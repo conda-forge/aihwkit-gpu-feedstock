@@ -1,6 +1,6 @@
 {% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
 {% set name = "aihwkit" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.0" %}
 {% set number = 0 %}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 1cfd8ca9fec90c7df1d0eacefbc5b421008bbf8cefda481793cd9e3d75710ae7
+  sha256: 51979974b4db54616b0ff0a5b13384b79ff3789246838b9e1498067b6bcc2ef3
 
 build:
   skip: true  # [win or osx]
@@ -27,6 +27,7 @@ requirements:
     - numpy
     - pybind11
     - make
+    - mypy
     - libgomp   # [linux]
   host:
     - python
@@ -65,3 +66,5 @@ about:
 extra:
   recipe-maintainers:
     - kkvtran
+    - kaoutar55
+    - todd-deshane
