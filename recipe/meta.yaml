@@ -13,7 +13,8 @@ source:
 
 build:
   skip: true  # [win or osx]
-  skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
+  # not yet ready for python 3.12
+  skip: true  # [py>=312]
   missing_dso_whitelist:
     - $RPATH/libtorch_python.so
   number: {{ number }}
@@ -21,6 +22,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != 'None']
     - cmake
