@@ -1,6 +1,6 @@
 {% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
 {% set name = "aihwkit" %}
-{% set version = "0.9.0" %}
+{% set version = "0.9.1" %}
 {% set number = 0 %}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 51979974b4db54616b0ff0a5b13384b79ff3789246838b9e1498067b6bcc2ef3
+  sha256: b86e5ad311225fdad29e9f83f4a5e8e33538677d04080ae180676e208ee96c2c
 
 build:
   skip: true  # [win or osx]
@@ -49,6 +49,7 @@ requirements:
     - requests
     - protobuf
     - scipy
+    - scikit-learn
     - cudatoolkit  # [cuda_compiler_version != 'None']
     - pytorch =*=cuda*   # [cuda_compiler_version != 'None']  
     - pytorch      # [cuda_compiler_version == 'None']
