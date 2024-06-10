@@ -65,7 +65,7 @@ about:
   license_file: LICENSE.txt
   doc_url: https://aihwkit.readthedocs.io/
   dev_url: https://github.com/IBM/aihwkit
-  
+
 extra:
   recipe-maintainers:
     - kkvtran
