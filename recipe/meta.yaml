@@ -33,6 +33,7 @@ requirements:
     - libgomp   # [linux]
   host:
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+    - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - python
     - mkl
     - libblas =*=*_mkl
