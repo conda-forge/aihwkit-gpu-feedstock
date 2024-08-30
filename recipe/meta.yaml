@@ -38,7 +38,6 @@ requirements:
     - mkl-include
     - pip ==23.0.1
     - scikit-build
-    - cudatoolkit  # [cuda_compiler_version != 'None']
     - pytorch =*=cuda*   # [cuda_compiler_version != 'None']
     - pytorch      # [cuda_compiler_version == 'None']
   run:
@@ -50,7 +49,6 @@ requirements:
     - protobuf
     - scipy
     - scikit-learn
-    - cudatoolkit  # [cuda_compiler_version != 'None']
     - pytorch =*=cuda*   # [cuda_compiler_version != 'None']  
     - pytorch      # [cuda_compiler_version == 'None']
 test:
