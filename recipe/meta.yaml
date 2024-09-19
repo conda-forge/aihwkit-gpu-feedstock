@@ -1,7 +1,7 @@
 {% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
 {% set name = "aihwkit" %}
 {% set version = "0.9.2" %}
-{% set number = 1 %}
+{% set number = 0 %}
 
 package:
   name: {{ pname|lower }}
