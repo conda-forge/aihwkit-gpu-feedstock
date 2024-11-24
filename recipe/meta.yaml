@@ -17,11 +17,14 @@ source:
 build:
   skip: true  # [win or osx]
   # not yet ready for python 3.12
-  skip: true  # [py>=312]
+  # skip: true  # [py>=312]
   ignore_run_exports_from:
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
   number: {{ build }}
+  string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+  string: cpu_{{ blas_impl }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                 # [cuda_compiler_version == "None"]
+      
 
 requirements:
   build:
@@ -71,6 +74,12 @@ outputs:
   - name: aihwkit
   {% set pname = "aihwkit-cpu" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
   - name: {{ pname }}
+    build:
+      skip: true  # [win or osx]
+      # not yet ready for python 3.12
+      # skip: true  # [py>=312]
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [cuda_compiler_version != "None"]
+      string: cpu_{{ blas_impl }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                 # [cuda_compiler_version == "None"]
     requirements:
       run:
         - {{ pin_subpackage('aihwkit', exact=True) }}
