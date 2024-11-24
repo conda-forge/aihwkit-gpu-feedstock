@@ -1,14 +1,17 @@
-{% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
-{% set name = "aihwkit" %}
 {% set version = "0.9.2" %}
-{% set number = 0 %}
+{% set build = 1 %}
+
+{% if cuda_compiler_version != "None" %}
+# Increment the build number in order to prefer the CUDA builds
+{% set build = build + 100 %}
+{% endif %}
 
 package:
-  name: {{ pname|lower }}
+  name: aihwkit
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/a/aihwkit/aihwkit-{{ version }}.tar.gz
   sha256: cbcc4410830786edb510564dcbdc4c289490b9099d43535ba71bb8de999fef26
 
 build:
@@ -18,12 +21,12 @@ build:
   ignore_run_exports_from:
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-  number: {{ number }}
+  number: {{ build }}
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != 'None']
     - cmake
@@ -36,11 +39,10 @@ requirements:
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - libcurand-dev                             # [(cuda_compiler_version or "").startswith("12")]
+    - mkl-devel
     - python
-    - mkl
-    - libblas =*=*_mkl
-    - mkl-include
-    - pip ==23.0.1
+    - pip
+    - setuptools
     - scikit-build
     - pytorch =*=cuda*                          # [cuda_compiler_version != 'None']
     - pytorch                                   # [cuda_compiler_version == 'None']
@@ -52,19 +54,26 @@ requirements:
     - libcusparse-dev                           # [(cuda_compiler_version or "").startswith("12")]
   run:
     - python
-    - mkl
-    - libblas =*=*_mkl
     - torchvision
     - requests
     - protobuf
     - scipy
     - scikit-learn
     - pytorch =*=cuda*   # [cuda_compiler_version != 'None']  
-    - pytorch      # [cuda_compiler_version == 'None']
+    # avoid that people without GPUs needlessly download ~0.5-1GB
+    - __cuda             # [cuda_compiler_version != 'None']
 test:
   imports:
     - aihwkit
     - aihwkit.simulator
+
+outputs:
+  - name: aihwkit
+  {% set pname = "aihwkit-cpu" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
+  - name: {{ pname }}
+    requirements:
+      run:
+        - {{ pin_subpackage('aihwkit', exact=True) }}
 
 about:
   home: https://github.com/IBM/aihwkit
