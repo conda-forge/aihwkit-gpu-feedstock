@@ -1,5 +1,5 @@
-About aihwkit-gpu-feedstock
-===========================
+About aihwkit-feedstock
+=======================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/aihwkit-gpu-feedstock/blob/main/LICENSE.txt)
 
@@ -52,24 +52,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version12python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=20304&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/aihwkit-gpu-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/aihwkit-gpu-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version12python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version12python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=20304&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/aihwkit-gpu-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/aihwkit-gpu-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version12python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.9.____cpython</td>
+              <td>linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version12python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=20304&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/aihwkit-gpu-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.0cxx_compiler_version12python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/aihwkit-gpu-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version12cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version12python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -107,28 +107,29 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-aihwkit-green.svg)](https://anaconda.org/conda-forge/aihwkit) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/aihwkit.svg)](https://anaconda.org/conda-forge/aihwkit) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/aihwkit.svg)](https://anaconda.org/conda-forge/aihwkit) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/aihwkit.svg)](https://anaconda.org/conda-forge/aihwkit) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-aihwkit--cpu-green.svg)](https://anaconda.org/conda-forge/aihwkit-cpu) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/aihwkit-cpu.svg)](https://anaconda.org/conda-forge/aihwkit-cpu) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/aihwkit-cpu.svg)](https://anaconda.org/conda-forge/aihwkit-cpu) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/aihwkit-cpu.svg)](https://anaconda.org/conda-forge/aihwkit-cpu) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-aihwkit--gpu-green.svg)](https://anaconda.org/conda-forge/aihwkit-gpu) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/aihwkit-gpu.svg)](https://anaconda.org/conda-forge/aihwkit-gpu) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/aihwkit-gpu.svg)](https://anaconda.org/conda-forge/aihwkit-gpu) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/aihwkit-gpu.svg)](https://anaconda.org/conda-forge/aihwkit-gpu) |
 
-Installing aihwkit-gpu
-======================
+Installing aihwkit
+==================
 
-Installing `aihwkit-gpu` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `aihwkit` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `aihwkit, aihwkit-gpu` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `aihwkit, aihwkit-cpu, aihwkit-gpu` can be installed with `conda`:
 
 ```
-conda install aihwkit aihwkit-gpu
+conda install aihwkit aihwkit-cpu aihwkit-gpu
 ```
 
 or with `mamba`:
 
 ```
-mamba install aihwkit aihwkit-gpu
+mamba install aihwkit aihwkit-cpu aihwkit-gpu
 ```
 
 It is possible to list all of the versions of `aihwkit` available on your platform with `conda`:
@@ -198,17 +199,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating aihwkit-gpu-feedstock
-==============================
+Updating aihwkit-feedstock
+==========================
 
-If you would like to improve the aihwkit-gpu recipe or build a new
+If you would like to improve the aihwkit recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/aihwkit-gpu-feedstock are
+Note that all branches in the conda-forge/aihwkit-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
