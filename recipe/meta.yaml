@@ -16,12 +16,12 @@ build:
   # not yet ready for python 3.12
   skip: true  # [py>=312]
   ignore_run_exports_from:
-    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - pytorch  # [cuda_compiler_version == 'None']
-    - pytorch =*=cuda*  # [cuda_compiler_version != 'None']
+    - libcusolver-dev  #  [(cuda_compiler_version or "").startswith("12")]
+    - libcusparse-dev  #  [(cuda_compiler_version or "").startswith("12")]
+    - pytorch  #  [cuda_compiler_version == "None"]
+    - pytorch * cuda*  #  [cuda_compiler_version != "None"]
     - python
-    - cudatoolkit # [cuda_compiler_version != 'None']
+    - cudatoolkit #  [cuda_compiler_version != "None"]
     - sysroot_linux-64
   number: {{ number }}
 
@@ -30,13 +30,13 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}  # [cuda_compiler_version != 'None']
+    - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake
     - numpy
     - pybind11
     - make
     - mypy
-    - libgomp   # [linux]
+    - libgomp # [linux]
     - openblas
   host:
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
@@ -47,8 +47,9 @@ requirements:
     - blas
     - pip ==23.0.1
     - scikit-build
-    - pytorch =*=cuda*                          # [cuda_compiler_version != 'None']
-    - pytorch                                   # [cuda_compiler_version == 'None']
+    - setuptools                                # Added setuptools for pip build backend
+    - pytorch * cuda*                           # [cuda_compiler_version != "None"]
+    - pytorch                                   # [cuda_compiler_version == "None"]
     ########################################################################################################################################
     # Needed because PyTorch's ATen `#include`s them                                                                                       #
     # xref: https://github.com/pytorch/pytorch/blob/50efbb9f1e7111b4b6d5b8e9a6064ee9783930be/aten/src/ATen/cuda/CUDAContextLight.h#L6-L16  #
@@ -64,8 +65,8 @@ requirements:
     - protobuf
     - scipy
     - scikit-learn
-    - pytorch =*=cuda*   # [cuda_compiler_version != 'None']  
-    - pytorch      # [cuda_compiler_version == 'None']
+    - pytorch * cuda*   # [cuda_compiler_version != "None"]  
+    - pytorch           # [cuda_compiler_version == "None"]
 test:
   imports:
     - aihwkit
