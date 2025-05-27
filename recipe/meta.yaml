@@ -18,6 +18,11 @@ build:
   ignore_run_exports_from:
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
+    - pytorch  # [cuda_compiler_version == 'None']
+    - pytorch =*=cuda*  # [cuda_compiler_version != 'None']
+    - python
+    - cudatoolkit # [cuda_compiler_version != 'None']
+    - sysroot_linux-64
   number: {{ number }}
 
 requirements:
@@ -32,14 +37,14 @@ requirements:
     - make
     - mypy
     - libgomp   # [linux]
+    - openblas
   host:
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - libcurand-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - python
-    - mkl
-    - libblas =*=*_mkl
-    - mkl-include
+    - openblas
+    - blas
     - pip ==23.0.1
     - scikit-build
     - pytorch =*=cuda*                          # [cuda_compiler_version != 'None']
@@ -52,8 +57,8 @@ requirements:
     - libcusparse-dev                           # [(cuda_compiler_version or "").startswith("12")]
   run:
     - python
-    - mkl
-    - libblas =*=*_mkl
+    - libopenblas
+    - blas
     - torchvision
     - requests
     - protobuf
