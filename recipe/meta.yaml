@@ -18,8 +18,8 @@ build:
   ignore_run_exports_from:
     - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
     - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - pytorch ==2.3.1  # [cuda_compiler_version == "None"]
-    - pytorch ==2.3.1 cuda*  # [cuda_compiler_version != "None"]
+    - pytorch  # [cuda_compiler_version == "None"]
+    - pytorch * cuda*  # [cuda_compiler_version != "None"]
     - python
     - cudatoolkit  # [cuda_compiler_version != "None"]
     - sysroot_linux-64
@@ -42,14 +42,13 @@ requirements:
     - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - libcurand-dev                             # [(cuda_compiler_version or "").startswith("12")]
     - python
-    - mkl
-    - libblas * *_mkl
+    - blas
     - mkl-include
     - pip ==23.0.1
     - scikit-build
     - setuptools                                # Added setuptools for pip build backend
-    - pytorch ==2.3.1 cuda*    # [cuda_compiler_version != "None"]
-    - pytorch ==2.3.1          # [cuda_compiler_version == "None"]
+    - pytorch * cuda*    # [cuda_compiler_version != "None"]
+    - pytorch          # [cuda_compiler_version == "None"]
     ########################################################################################################################################
     # Needed because PyTorch's ATen `#include`s them                                                                                       #
     # xref: https://github.com/pytorch/pytorch/blob/50efbb9f1e7111b4b6d5b8e9a6064ee9783930be/aten/src/ATen/cuda/CUDAContextLight.h#L6-L16  #
@@ -58,15 +57,15 @@ requirements:
     - libcusparse-dev                           # [(cuda_compiler_version or "").startswith("12")]
   run:
     - python
-    - mkl
-    - libblas =*=*_mkl
+    - blas
+    - libopenblas
     - torchvision
     - requests
     - protobuf
     - scipy
     - scikit-learn
-    - pytorch ==2.3.1 cuda*    # [cuda_compiler_version != "None"]
-    - pytorch ==2.3.1          # [cuda_compiler_version == "None"]
+    - pytorch * cuda*    # [cuda_compiler_version != "None"]
+    - pytorch          # [cuda_compiler_version == "None"]
 test:
   imports:
     - aihwkit
