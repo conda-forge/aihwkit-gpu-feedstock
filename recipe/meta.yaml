@@ -16,12 +16,10 @@ build:
   # not yet ready for python 3.12
   skip: true  # [py>=312]
   ignore_run_exports_from:
-    - libcusolver-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - libcusparse-dev  # [(cuda_compiler_version or "").startswith("12")]
-    - pytorch  # [cuda_compiler_version == "None"]
-    - pytorch * cuda*  # [cuda_compiler_version != "None"]
+    - libcusolver-dev  # [cuda_compiler_version != "None"]
+    - libcusparse-dev  # [cuda_compiler_version != "None"]
+    - pytorch
     - python
-    - cudatoolkit  # [cuda_compiler_version != "None"]
     - sysroot_linux-64
   number: {{ number }}
 
@@ -40,8 +38,8 @@ requirements:
     - openblas
   host:
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
-    - libcublas-dev                             # [(cuda_compiler_version or "").startswith("12")]
-    - libcurand-dev                             # [(cuda_compiler_version or "").startswith("12")]
+    - libcublas-dev                             # [cuda_compiler_version != "None"]
+    - libcurand-dev                             # [cuda_compiler_version != "None"]
     - python
     - openblas
     - blas
@@ -54,8 +52,8 @@ requirements:
     # Needed because PyTorch's ATen `#include`s them                                                                                       #
     # xref: https://github.com/pytorch/pytorch/blob/50efbb9f1e7111b4b6d5b8e9a6064ee9783930be/aten/src/ATen/cuda/CUDAContextLight.h#L6-L16  #
     ########################################################################################################################################
-    - libcusolver-dev                           # [(cuda_compiler_version or "").startswith("12")]
-    - libcusparse-dev                           # [(cuda_compiler_version or "").startswith("12")]
+    - libcusolver-dev                           # [cuda_compiler_version != "None"]
+    - libcusparse-dev                           # [cuda_compiler_version != "None"]
   run:
     - python
     - libopenblas
@@ -66,7 +64,7 @@ requirements:
     - scipy
     - scikit-learn
     - pytorch * cuda*   # [cuda_compiler_version != "None"]  
-    - pytorch           # [cuda_compiler_version == "None"]
+    - pytorch * cpu*    # [cuda_compiler_version == "None"]
 test:
   imports:
     - aihwkit
