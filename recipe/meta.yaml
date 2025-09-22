@@ -20,7 +20,6 @@ build:
     - libcusparse-dev  # [cuda_compiler_version != "None"]
     - pytorch
     - python
-    - sysroot_linux-64
   number: {{ number }}
 
 requirements:
