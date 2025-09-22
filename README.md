@@ -191,5 +191,4 @@ Feedstock Maintainers
 * [@PabloCarmona](https://github.com/PabloCarmona/)
 * [@kaoutar55](https://github.com/kaoutar55/)
 * [@kkvtran](https://github.com/kkvtran/)
-* [@todd-deshane](https://github.com/todd-deshane/)
 
