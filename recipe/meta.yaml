@@ -1,6 +1,6 @@
 {% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
 {% set name = "aihwkit" %}
-{% set version = "1.0.0" %}
+{% set version = "1.1.0" %}
 {% set number = 0 %}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 129799705db6031dda5dfae9f0fea92db944fa7f8d92ff518ae287cfb66b306b
+  sha256: 10315a8bfde7e35772a3ae0082fc0340f69b8ab61854dee7b81b1f0e82da0544
 
 build:
   skip: true  # [win or osx]
@@ -76,7 +76,7 @@ about:
   license_file: LICENSE.txt
   doc_url: https://aihwkit.readthedocs.io/
   dev_url: https://github.com/IBM/aihwkit
-  
+
 extra:
   recipe-maintainers:
     - kkvtran
