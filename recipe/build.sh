@@ -3,7 +3,9 @@ export MAKEFLAGS="-j$(nproc)"
 echo "nproc = '$(nproc)'"
 if [[ "${cuda_compiler_version}" == "None" ]]
 then
-  $PYTHON -m pip install . -vv --install-option="-DRPU_BLAS=OpenBLAS"
+  export CMAKE_ARGS="${CMAKE_ARGS} -DRPU_BLAS=OpenBLAS"
+  $PYTHON -m pip install . -vv --no-build-isolation
 else
-  $PYTHON -m pip install . -vv --install-option="-DRPU_BLAS=OpenBLAS" --install-option="-DUSE_CUDA=ON" --install-option="-DRPU_CUDA_ARCHITECTURES='60;61;70;75;80;86'"    --install-option="-DCUDAHOSTCXX=$CXX" --install-option="-DCMAKE_CUDA_COMPILER=`which nvcc`" --install-option="-DCMAKE_CUDA_HOST_COMPILER=${CXX}"
+  export CMAKE_ARGS="${CMAKE_ARGS} -DRPU_BLAS=OpenBLAS -DUSE_CUDA=ON -DRPU_CUDA_ARCHITECTURES='75;80;86;89;90' -DCUDAHOSTCXX=$CXX -DCMAKE_CUDA_COMPILER=`which nvcc` -DCMAKE_CUDA_HOST_COMPILER=${CXX}"
+  $PYTHON -m pip install . -vv --no-build-isolation
 fi
