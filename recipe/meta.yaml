@@ -13,7 +13,7 @@ source:
 
 build:
   skip: true  # [win or osx]
-  skip: true # [py<310 or py>312]
+  skip: true  # [py<310 or py>312]
   ignore_run_exports_from:
     - libcusolver-dev  # [cuda_compiler_version != "None"]
     - libcusparse-dev  # [cuda_compiler_version != "None"]
@@ -63,7 +63,7 @@ requirements:
     - scipy
     - scikit-learn
     - pytorch * cuda*    # [cuda_compiler_version != "None"]  
-    - pytorch * cpu*    # [cuda_compiler_version == "None"]
+    - pytorch * cpu*     # [cuda_compiler_version == "None"]
 test:
   imports:
     - aihwkit
