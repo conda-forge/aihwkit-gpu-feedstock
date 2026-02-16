@@ -1,6 +1,6 @@
 {% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
 {% set name = "aihwkit" %}
-{% set version = "1.0.0" %}
+{% set version = "1.1.0" %}
 {% set number = 0 %}
 
 package:
@@ -9,12 +9,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 129799705db6031dda5dfae9f0fea92db944fa7f8d92ff518ae287cfb66b306b
+  sha256: 10315a8bfde7e35772a3ae0082fc0340f69b8ab61854dee7b81b1f0e82da0544
 
 build:
   skip: true  # [win or osx]
-  # not yet ready for python 3.12
-  skip: true  # [py>=312]
+  skip: true  # [py<310 or py>312]
   ignore_run_exports_from:
     - libcusolver-dev  # [cuda_compiler_version != "None"]
     - libcusparse-dev  # [cuda_compiler_version != "None"]
@@ -42,8 +41,9 @@ requirements:
     - python
     - openblas
     - blas
-    - pip ==23.0.1
     - scikit-build
+    - pip
+    - pybind11
     - setuptools                                # Added setuptools for pip build backend
     - pytorch * cuda*                           # [cuda_compiler_version != "None"]
     - pytorch                                   # [cuda_compiler_version == "None"]
@@ -62,8 +62,8 @@ requirements:
     - protobuf
     - scipy
     - scikit-learn
-    - pytorch * cuda*   # [cuda_compiler_version != "None"]  
-    - pytorch * cpu*    # [cuda_compiler_version == "None"]
+    - pytorch * cuda*    # [cuda_compiler_version != "None"]  
+    - pytorch * cpu*     # [cuda_compiler_version == "None"]
 test:
   imports:
     - aihwkit
@@ -79,6 +79,5 @@ about:
   
 extra:
   recipe-maintainers:
-    - kkvtran
     - kaoutar55
     - PabloCarmona
