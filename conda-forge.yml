@@ -1,8 +1,8 @@
-azure:
-  free_disk_space: true
 github:
   branch_name: main
   tooling_branch_name: main
 conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
+workflow_settings:
+  free_disk_space: quick
