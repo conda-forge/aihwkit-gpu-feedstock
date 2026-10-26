@@ -1,6 +1,6 @@
 {% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
 {% set name = "aihwkit" %}
-{% set version = "1.1.0" %}
+{% set version = "1.2.0" %}
 {% set number = 0 %}
 
 package:
@@ -9,11 +9,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 10315a8bfde7e35772a3ae0082fc0340f69b8ab61854dee7b81b1f0e82da0544
+  sha256: 288b00aed52a99f578a2e7ac46fdbf2a9f07e4780c4307eae5827558f1bf2cba
 
 build:
   skip: true  # [win or osx]
-  skip: true  # [py<310 or py>312]
+  skip: true  # [py<312 or py>315]
   ignore_run_exports_from:
     - libcusolver-dev  # [cuda_compiler_version != "None"]
     - libcusparse-dev  # [cuda_compiler_version != "None"]
@@ -27,11 +27,9 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
-    - cmake
-    - numpy
-    - pybind11
+    - cmake >=4.2.1
     - make
-    - mypy
+    - ninja
     - libgomp  # [linux]
     - openblas
   host:
@@ -41,10 +39,13 @@ requirements:
     - python
     - openblas
     - blas
-    - scikit-build
+    - scikit-build >=0.18.1
     - pip
-    - pybind11
-    - setuptools                                # Added setuptools for pip build backend
+    - pybind11 >=3.0.1
+    - setuptools >=77.0.0
+    - wheel
+    - numpy
+    - mypy
     - pytorch * cuda*                           # [cuda_compiler_version != "None"]
     - pytorch                                   # [cuda_compiler_version == "None"]
     ########################################################################################################################################
@@ -57,12 +58,14 @@ requirements:
     - python
     - libopenblas
     - blas
+    - numpy
     - torchvision
-    - requests
+    - requests >=2.32,<3
     - protobuf
     - scipy
     - scikit-learn
-    - pytorch * cuda*    # [cuda_compiler_version != "None"]  
+    - tqdm
+    - pytorch * cuda*    # [cuda_compiler_version != "None"]
     - pytorch * cpu*     # [cuda_compiler_version == "None"]
 test:
   imports:
