@@ -1,4 +1,5 @@
-{% set pname = "aihwkit" if cuda_compiler_version == "None" else "aihwkit-gpu" %}
+{% set pname = "aihwkit" %}      # [cuda_compiler_version == "None"]
+{% set pname = "aihwkit-gpu" %}  # [cuda_compiler_version != "None"]
 {% set name = "aihwkit" %}
 {% set version = "1.2.0" %}
 {% set number = 0 %}
@@ -12,9 +13,7 @@ source:
   sha256: 288b00aed52a99f578a2e7ac46fdbf2a9f07e4780c4307eae5827558f1bf2cba
 
 build:
-  skip: true  # [win or osx]
-  skip: true  # [py<312 or py>315]
-  skip: true  # [cuda_compiler_version == "12.9" and py == 314]
+  skip: true  # [win or osx or py<312 or py>315 or (cuda_compiler_version == "12.9" and py == 314)]
   ignore_run_exports_from:
     - libcusolver-dev  # [cuda_compiler_version != "None"]
     - libcusparse-dev  # [cuda_compiler_version != "None"]
@@ -80,7 +79,7 @@ about:
   license_file: LICENSE.txt
   doc_url: https://aihwkit.readthedocs.io/
   dev_url: https://github.com/IBM/aihwkit
-  
+
 extra:
   recipe-maintainers:
     - kaoutar55
